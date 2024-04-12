@@ -1,0 +1,18 @@
+<%= form_with(model: @booking, url: bookings_path) do |form| %>
+    <%= form.hidden_field :flight_id %>
+    <% @booking.passengers.each do |passenger| %>
+      <%= form.fields_for :passengers, passenger do |passenger_fields| %>
+        <br><br>
+        <div>
+          <%= passenger_fields.label :name %>
+          <%= passenger_fields.text_field :name %>
+        </div>
+        <div>
+          <%= passenger_fields.label :email %>
+          <%= passenger_fields.email_field :email %>
+        </div>
+      <% end %>
+    <% end %>
+    <%= form.submit "Book Now" %>
+<% end %>
+  
